@@ -1,7 +1,6 @@
 import React from 'react';
 import BasicRoute from './Component/root/BasicRoute';
 import HomePage from './Pages/HomePage/HomePage';
-import Committee from './Component/Home/committee/committee';
 import AuthorHomePage from './Pages/AuthorDashboard/AuthorHomePage/AuthorHomePage';
 import PrivateRoute from './Component/Shared/PrivateRoute/PrivateRoute';
 import AddAdmin from './Pages/TractChair/AddAdmin/AddAdmin';
@@ -36,6 +35,7 @@ import CustomizeHomePage from './Pages/AdminDashboard/CustomizeHomePage/Customiz
 import UpdateConferenceDate from './Pages/AdminDashboard/UpdateConferenceDate/UpdateConferenceDate';
 import AssignPaperToReviewer from './Pages/TractChair/AssignPaperToReviewer/AssignPaperToReviewer';
 import ManageCommittee from './Pages/TractChair/ManageCommittee/ManageCommittee';
+import DisplayCommittee from './Pages/DisplayCommittee/DisplayCommittee';
 const RouteJSX = (
     <>
         <>
@@ -48,7 +48,13 @@ const RouteJSX = (
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/login" element={<LogIn />} />
                     <Route path="/sign-up" element={<SignUp />} />
-                    <Route path="/committee" element={<Committee />} />
+                    <Route path="/committee"
+                        loader={({ request }) =>
+                            fetch("http://localhost:8080/api/v1/create-committee", {
+                                signal: request.signal,
+                            })
+                        }
+                        element={<DisplayCommittee />} />
                 </Route>
 
             </Route>

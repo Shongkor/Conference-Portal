@@ -19,19 +19,20 @@ const SideBar = () => {
             <div className='homeSidebar'>
                 {
                     <nav className="overflow-auto forRightScroll">
-                        <h5 className='text-center my-5'><button type="button" class="btn btn-outline-primary">Submit Paper</button></h5>
+                        <h5 className='text-center my-5'><button type="button" class="btn btn-outline-primary">Log In</button></h5>
+                        {/* <h5 className='text-center my-5'><Link to='/login'><button type="button" class="btn btn-outline-primary">Log In</button></Link></h5> */}
                         <h6>
                         <Link to='/' className="text-dark"><HiOutlineHome /> Home Page</Link>
                         </h6>
                         <h6>
-                            <Link to='/author' className="my-4 text-dark"><FaUser />Author Dashboard </Link>
+                            <Link to='/author' className="my-4 text-dark"><FaUser />Author LogIn </Link>
                         </h6>
 
                         <h6>
-                        <Link to='/reviewer/dashboard' className="mb-4 text-dark"><MdOutlineRateReview/>Reviewer Dashboard</Link>
+                        <Link to='/reviewer/dashboard' className="mb-4 text-dark"><MdOutlineRateReview/>Reviewer LogIn</Link>
                         </h6>
                         <h6>
-                        <Link to='/admin/dashboard' className="mb-4 text-dark"><FaUserShield/>Admin Dashboard</Link>
+                        <Link to='/admin/dashboard' className="mb-4 text-dark"><FaUserShield/>Admin LogIn</Link>
                         </h6>
                         <h6>
                         <Link to='/tract-chair' className="text-dark"><RiAdminFill />Track Chair </Link>

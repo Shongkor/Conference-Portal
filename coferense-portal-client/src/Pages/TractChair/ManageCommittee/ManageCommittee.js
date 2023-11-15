@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import './manageCommittee.css'
 import { AiOutlineUserAdd } from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import Swal from 'sweetalert2'
 
 const ManageCommittee = () => {
+    let navigate = useNavigate();
     const [formData, setFormData] = useState({
         committeeName: "",
         members: [{
@@ -56,6 +60,63 @@ const ManageCommittee = () => {
         data[index][event.target.name] = event.target.value;
         console.log(data);
     }
+    const handleSubCommitteeMember = (event, index) => {
+
+        let data = [...subcommittee['subCommitteeMembers']];
+        data[index][event.target.name] = event.target.value;
+        console.log("SubCommittee Data", data);
+    }
+    const handleCommitteeName = (event) => {
+        let committeeName = event.target.value;
+        setFormData({ ...formData, committeeName })
+        console.log(formData);
+    }
+    const handleSubCommitteeName = (event) => {
+        let subCommitteeName = event.target.value;
+        setSubCommittee({ ...subcommittee, subCommitteeName })
+        console.log(subcommittee);
+    }
+    const CreatingCommitteeAndSubCommittee = () => {
+        let committeeData = {
+            mainCommittee: formData,
+            subCommittee: subcommittee
+        }
+        console.log(committeeData);
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#008000',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes !'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                axios.post('http://localhost:8080/api/v1/create-committee', committeeData)
+                      .then(function (response) {
+                        Swal.fire(
+                          'Uploaded!',
+                          'Committee Creation Completed!',
+                          'success'
+                        )
+                        console.log('llllllllllllll', response);
+                        navigate('/committee');
+                      })
+                      .catch(function (error) {
+                        Swal.fire({
+                          position: 'top-end',
+                          icon: 'error',
+                          title: 'Committee Creation Failed',
+                          showConfirmButton: false,
+                          timer: 1500
+                        })
+                      });
+
+            }
+        })
+        
+    }
     return (
         <div className='committeeInputField TitleForCreatingCommittee'>
             <h4 className='text-center'>Add Committee Here</h4>
@@ -63,7 +124,7 @@ const ManageCommittee = () => {
                 <div className=''>
                     <div className='committeeName'>
                         <label for="name" className='labelStyle'> Committee Name : </label>
-                        <input type="text" id="name" name="name" onChange={(e) => handleFormChange(e)} />
+                        <input type="text" id="name" name="name" onChange={(e) => handleCommitteeName(e)} />
                     </div>
                     {
 
@@ -110,33 +171,41 @@ const ManageCommittee = () => {
 
 
                     <div className=''>
-                    {
-                        subcommittee.subCommitteeMembers.length ? <h4>Add Sub Committee Member Here</h4> : ""
-                    }
-                    
+                        {
+                            subcommittee.subCommitteeMembers.length ?
+                                <>
+                                    <h4>Add Sub Committee Member Here</h4>
+                                    <div className='committeeName'>
+                                        <label for="name" className='subCommitteeNameLabel'> Sub Committee Name : </label>
+                                        <input type="text" id="name" name="name" onChange={(e) => handleSubCommitteeName(e)} />
+                                    </div>
+                                </>
+                                : ""
+                        }
+
                         {
 
                             subcommittee.subCommitteeMembers.map((val, index) => {
                                 return (
                                     <>
-                                        
+
                                         <div className='d-flex subCommitteeInputContainer'>
 
                                             <div>
                                                 <label for="name">Name : </label>
-                                                <input type="text" id="name" name="name" onChange={(e) => handleFormChange(e, index)} />
+                                                <input type="text" id="name" name="name" onChange={(e) => handleSubCommitteeMember(e, index)} />
                                             </div>
                                             <div>
                                                 <label for="affiliation">Affiliation : </label>
-                                                <input type="text" id="affiliation" name="affiliation" onChange={(e) => handleFormChange(e, index)} />
+                                                <input type="text" id="affiliation" name="affiliation" onChange={(e) => handleSubCommitteeMember(e, index)} />
                                             </div>
                                             <div>
                                                 <label for="email">Email : </label>
-                                                <input type="email" id="email" name="email" onChange={(e) => handleFormChange(e, index)} />
+                                                <input type="email" id="email" name="email" onChange={(e) => handleSubCommitteeMember(e, index)} />
                                             </div>
                                             <div>
                                                 <label for="designation">Designation : </label>
-                                                <input type="text" id="designation" name="designation" onChange={(e) => handleFormChange(e, index)} />
+                                                <input type="text" id="designation" name="designation" onChange={(e) => handleSubCommitteeMember(e, index)} />
                                             </div>
                                         </div>
                                     </>
@@ -156,6 +225,10 @@ const ManageCommittee = () => {
                     </div>
                 </div>
             </section>
+            <div className='text-end me-5 mb-2'>
+                <button className="button-81" onClick={CreatingCommitteeAndSubCommittee}>Submit</button>
+            </div>
+
         </div>
     );
 };

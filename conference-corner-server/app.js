@@ -8,6 +8,7 @@ const authorRoute = require('./Routes/v1/authorSubmit');
 const adminRoute = require('./Routes/v1/admin.route');
 const reviewerRoute = require('./Routes/v1/reviewer.route');
 const signUpRoute = require('./Routes/v1/signUp.route');
+const committeeRoute = require('./Routes/v1/createCommittee.route');
 
 
 app.use(express.json());
@@ -38,6 +39,7 @@ app.use('/api/v1/contact', contactRoute);
 app.use('/api/v1/submit',upload.single('fileURL'), authorRoute);
 app.use('/api/v1/admin', adminRoute);
 app.use('/api/v1/reviewer', reviewerRoute);
+app.use('/api/v1/create-committee', committeeRoute);
 app.use('/api/v1/sign-up', signUpRoute);
 
 
