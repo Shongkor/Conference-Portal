@@ -18,7 +18,7 @@ const Carousel = () => {
                 </div>
                 <div class="carousel-inner forOverlay">
                     <div class="carousel-item  active" data-bs-interval="4000">
-                        <img src={versityOne} style={{ height: '600px', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }} class="d-block w-100" alt="..." />
+                        <img src={versityOne} style={{ height: '500px', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }} class="d-block w-100" alt="..." />
                         <div class="carousel-caption d-none d-md-block fw-bold text-light">
                             <p className='px-5 py-3 text-start'>
                                 <h3 className='text-center text-bg-danger mx-5'><IoIosArrowBack /><IoIosArrowBack />Important Dates<MdOutlineArrowForwardIos /><MdOutlineArrowForwardIos /></h3>
@@ -31,7 +31,7 @@ const Carousel = () => {
                         </div>
                     </div>
                     <div class="carousel-item" data-bs-interval="4000">
-                        <img src={versityTwo} style={{ height: '600px', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }} class="d-block w-100" alt="..." />
+                        <img src={versityTwo} style={{ height: '500px', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }} class="d-block w-100" alt="..." />
                         <div class="carousel-caption d-none d-md-block fw-bold text-light">
                         <p className='px-5 py-3 text-start'>
                                 <h3 className='text-center text-bg-danger mx-5'><IoIosArrowBack /><IoIosArrowBack />Important Dates<MdOutlineArrowForwardIos /><MdOutlineArrowForwardIos /></h3>
@@ -44,7 +44,7 @@ const Carousel = () => {
                         </div>
                     </div>
                     <div class="carousel-item" data-bs-interval="4000">
-                        <img src={versityThree} style={{ height: '600px', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }} class="d-block w-100" alt="..." />
+                        <img src={versityThree} style={{ height: '500px', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }} class="d-block w-100" alt="..." />
                         <div class="carousel-caption d-none d-md-block fw-bold text-light">
                         <p className='px-5 py-3 text-start'>
                                 <h3 className='text-center text-bg-danger mx-5'><IoIosArrowBack /><IoIosArrowBack />Important Dates<MdOutlineArrowForwardIos /><MdOutlineArrowForwardIos /></h3>

@@ -44,7 +44,7 @@ const RequestForReviewer = () => {
 
         <div >
             {
-                checkRequestedOrNot ? <h1>Already Requested</h1> :
+                checkRequestedOrNot.length ? <h1>Already Requested</h1> :
 
                     <>
                         <h2 className='text-center my-3'>Provide your Pertinence</h2>
