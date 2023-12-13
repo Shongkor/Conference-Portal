@@ -9,5 +9,6 @@ router.route("/").get(reviewerController.GetRequestedReviewersController);
 router.route("/selected-reviewer-list").get(reviewerController.GetAllReviewerListController);
 router.route("/:email").delete(reviewerController.deleteReviewerByIdController);
 router.route("/reviewer-list/:email").delete(reviewerController.deleteSelectedReviewerController);
+router.route("/:id").patch(reviewerController.UpdatePaperToAssigningReviewerController);
 
 module.exports = router;

@@ -7,6 +7,7 @@ const AuthorSubmit = mongoose.Schema({
     fileURL : String,
     paperDomain : String,
     keywords : String,
+    assignedReviewer : Array,
     author : [{
       firstName: String,
       lastName: String,

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useParams } from 'react-router-dom';
 import Select from 'react-select';
+import trackChairServices from '../../../Services/trackChairServices';
 
 const AssignPaperToReviewer = () => {
     const loadedUser = useLoaderData();
+    const {_id} = useParams()
+    
     const [reviewersList, setReviewersList] = useState(loadedUser.data)
     const options = []
     reviewersList.map(d => options.push({ value: d.email, label: d.name }))
@@ -11,6 +14,14 @@ const AssignPaperToReviewer = () => {
     const [assignedReviewerList, setAssignedReviewersList] = useState([])
     const handleChange = (reviewerEmail) => {
         setAssignedReviewersList(reviewerEmail)
+    }
+    const handleAssigningPaperToReviewer = async(assignedReviewerList) =>{
+        
+        const res = await trackChairServices.updatePaperAssigningReviewer(_id,assignedReviewerList)
+        
+        if(res.status === "success"){
+            console.log("response from backend of handleAssigningPaperToReviewer",res);
+        }
     }
     return (
         <>
@@ -29,7 +40,7 @@ const AssignPaperToReviewer = () => {
 
             </div>
             <div className='text-end'>
-                <button type="button" class="btn btn-primary btn-sm me-5 mb-5 mt-2"> Assign </button>
+                <button type="button" class="btn btn-primary btn-sm me-5 mb-5 mt-2" onClick={() => handleAssigningPaperToReviewer(assignedReviewerList)}> Assign </button>
             </div>
             <table class="table table-hover">
                 <thead>
