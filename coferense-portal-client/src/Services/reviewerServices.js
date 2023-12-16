@@ -16,6 +16,10 @@ class ReviewerServices {
         console.log('body',body);
         return requests.post('/reviewer/get-reviewer', body);
     }
+    // getPaperUsingAssignedReviewerEmail(body){
+    //     console.log('body',body);
+    //     return requests.post('/reviewer/get-paper-for-reviewer', body);
+    // }
     deleteReviewerById(email){
         console.log('body',email);
         return requests.delete(`/reviewer/${email}`);

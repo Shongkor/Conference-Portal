@@ -6,22 +6,12 @@ import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 
 const Services = () => {
-
     const [filteredPaper, setFilteredPaper] = useState([]);
     const { loggedUser } = useContext(AuthContext);
-
     useEffect(() => {
-        fetch("http://localhost:8080/api/v1/submit")
+        fetch(`http://localhost:8080/api/v1/submit/get-paper-by-email?email=${loggedUser.email}`)
             .then(res => res.json())
-            .then(data => {
-                data?.data.map(d => {
-                    return (
-                        d?.author.filter(a => a.email === loggedUser?.email &&setFilteredPaper([...filteredPaper, d]))
-                    )
-
-
-                })
-            })
+            .then(data => setFilteredPaper([data?.data]))
     }, [loggedUser?.email])
     return (
 
@@ -31,12 +21,12 @@ const Services = () => {
                     <h1 className="text-center my-5">History</h1>
                     <div className="row gap-3">
                         {
-                            filteredPaper?.map(sr => <Service service={sr}></Service>)
+                            filteredPaper[0]?.map(sr => <Service service={sr}></Service>)
                         }
                     </div>
                 </div>
             </div>
-            {console.log(filteredPaper)}
+            {console.log("lollllllllllll",filteredPaper)}
         </div>
 
     );

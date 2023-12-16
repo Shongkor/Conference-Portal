@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { useLoaderData, useParams } from 'react-router-dom';
+import { useLoaderData, useLocation, useParams } from 'react-router-dom';
 import Select from 'react-select';
 import trackChairServices from '../../../Services/trackChairServices';
 
 const AssignPaperToReviewer = () => {
     const loadedUser = useLoaderData();
     const {_id} = useParams()
-    
-    const [reviewersList, setReviewersList] = useState(loadedUser.data)
+    let { state } = useLocation();
+    const [perticularPaperInfo, setPerticularPaperInfo] = useState(state.paper.assignedReviewer);
+    const [reviewersList, setReviewersList] = useState(loadedUser.data);
     const options = []
     reviewersList.map(d => options.push({ value: d.email, label: d.name }))
 
@@ -17,7 +18,13 @@ const AssignPaperToReviewer = () => {
     }
     const handleAssigningPaperToReviewer = async(assignedReviewerList) =>{
         
+
         const res = await trackChairServices.updatePaperAssigningReviewer(_id,assignedReviewerList)
+
+        const paperInfo = await trackChairServices.getPaperById(_id)
+        
+        setPerticularPaperInfo(paperInfo.data[0].assignedReviewer)
+        console.log("paperById", perticularPaperInfo);
         
         if(res.status === "success"){
             console.log("response from backend of handleAssigningPaperToReviewer",res);
@@ -52,12 +59,12 @@ const AssignPaperToReviewer = () => {
                     </tr>
                 </thead>
                 <tbody>{
-                    reviewersList.map((reviewer, index) => {
+                    perticularPaperInfo.map((reviewer, index) => {
                         return (
                             <tr>
                                 <th scope="row">{index + 1}</th>
-                                <td>{reviewer.name}</td>
-                                <td>{reviewer.email}</td>
+                                <td>{reviewer.label}</td>
+                                <td>{reviewer.value}</td>
                                 {/* <td><button type="button" class="btn btn-danger" onClick={()=>removeReviewer(reviewer.email)}> Assign </button></td> */}
                                 <td><button type="button" class="btn btn-danger"> Remove </button></td>
                             </tr>
