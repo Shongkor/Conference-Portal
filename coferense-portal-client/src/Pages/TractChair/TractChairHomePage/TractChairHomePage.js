@@ -33,9 +33,9 @@ const TractChair = () => {
     const displayPaper = paginatePaper.map((paper, index) => {
         return (
 
-            <>
+            <div className='col-md-4'>
 
-                <div class="card p-2 m-2" style={{ width: "48%" }}>
+                <div class="card p-2 m-2">
                     <div class="card-block">
                         <div>
                             <h6 className='cd-header'>{paper.title}</h6>
@@ -79,7 +79,7 @@ const TractChair = () => {
                 {/* <!-- Modal --> */}
                 <OpenModalByReviewer paper={paper} state={state}></OpenModalByReviewer>
 
-            </>
+            </div>
         )
     });
     const pageCount = Math.ceil(PaperList.length / papersPerPage);
@@ -89,7 +89,7 @@ const TractChair = () => {
     return (
         <div className='TitleForCreatingCommittee'>
             <h4 className='text-center'> Paper List </h4>
-            <div className='container d-flex ms-1 BGC'>
+            <div className='container row ms-1'>
                 {displayPaper}
             </div>
             <div className='ul-center my-3'>

@@ -15,18 +15,14 @@ const Services = () => {
     }, [loggedUser?.email])
     return (
 
-        <div className='container'>
-            <div className="serviceBG py-5">
-                <div className="container">
-                    <h1 className="text-center my-5">History</h1>
-                    <div className="row gap-3">
-                        {
-                            filteredPaper[0]?.map(sr => <Service service={sr}></Service>)
-                        }
-                    </div>
-                </div>
+        <div className='historyTitle'>
+            <h4>History</h4>
+
+            <div className='container d-flex ms-1'>
+                {
+                    filteredPaper[0]?.map(sr => <Service service={sr}></Service>)
+                }
             </div>
-            {console.log("lollllllllllll",filteredPaper)}
         </div>
 
     );

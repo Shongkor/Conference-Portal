@@ -12,7 +12,7 @@ const CustomizeHomePage = () => {
         }
 
 
-        const res = await adminServices.postHomeMassage(content)
+        const res = await adminServices.UpdateHomeMassage(content)
         if(res){
             Swal.fire(
                 'Uploaded!',

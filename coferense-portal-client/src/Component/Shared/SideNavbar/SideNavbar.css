@@ -39,7 +39,6 @@
   .sidebar-title{
     display: flex;
     font-size: 1.2em;
-    justify-content: space-between;
   }
   .sidebar-title span i{
     display: inline-block;

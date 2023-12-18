@@ -48,6 +48,7 @@ const AddReview = () => {
             </div>
 
             <div className='container px-5 py-5 form-body'>
+
                 <section className=''>
                     <p><strong>Paper Title : {paper.title}</strong></p>
                     <p>Paper Domain : {paper.paperDomain}</p>

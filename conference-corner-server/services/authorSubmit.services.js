@@ -21,8 +21,17 @@ exports.getAuthorSubmitByEmailServices = async (queries) => {
     console.log(submitInfo);
     return submitInfo;
 };
+exports.GetReviewerAssignedPaperByEmailServices = async (queries) => {
+     const {email} = queries;
+
+
+    const submitInfo = await authorSubmitModel.find({"assignedReviewer.value" : email})
+    // .skip(queries.skip).limit(queries.limit)
+    console.log(submitInfo);
+    return submitInfo;
+};
 exports.getAuthorSubmitByIdServices = async (queries) => {
-    console.log('from services getAuthorSubmitServices', queries);
+
 
     const submitInfo = await authorSubmitModel.find(queries)
     // .skip(queries.skip).limit(queries.limit)
