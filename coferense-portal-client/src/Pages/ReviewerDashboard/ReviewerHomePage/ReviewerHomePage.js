@@ -83,7 +83,7 @@ const ReviewerHomePage = () => {
             
             <h4 className='text-center'> Paper List </h4>
 
-            <div className='container d-flex ms-1 BGC'>
+            <div className='container d-flex ms-4 BGC'>
                 {displayPaper}
                 {console.log("Rakaaaaaaaaaaaaaaaaaaaaaaaal",PaperList)}
             </div>

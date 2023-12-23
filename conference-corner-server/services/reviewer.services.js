@@ -41,13 +41,14 @@ exports.deleteReviewerByIdService = async (email) => {
     return submitInfo;
 };
 exports.assigningPaperToReviewerService = async (paperID,info) => {
-
-    
-
-
-
     console.log('from review services assigningPaperToReviewerService-----',paperID,info);
     const result = await AuthorSubmit.updateOne({ _id: paperID }, {$set:{assignedReviewer: info}})
+    console.log('from review services assigningPaperToReviewerService----',result);
+    return result;
+};
+exports.uploadReviewService = async (paperID,info) => {
+    console.log('from review services assigningPaperToReviewerService-----',paperID,info);
+    const result = await AuthorSubmit.updateOne({ _id: paperID }, {$set:{review : info}})
     console.log('from review services assigningPaperToReviewerService----',result);
     return result;
 };

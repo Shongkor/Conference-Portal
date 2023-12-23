@@ -1,7 +1,11 @@
 import React from 'react';
 import makeAdmin from '../../../Services/makeAdmin';
+import './UpdateConferenceDate.css'
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const UpdateConferenceDate = () => {
+    let navigate = useNavigate();
     const handleSubmit = async (event) => {
         event.preventDefault();
         const form = event.target
@@ -20,13 +24,19 @@ const UpdateConferenceDate = () => {
 
         const res = await makeAdmin.UpdateDate(Date);
         if (res) {
-            console.log("res received");
+            Swal.fire(
+                'UpDated!',
+                'Successfully Updated!',
+                'success'
+              )
+              navigate('/dates');
         }
 
     }
     return (
-        <div className='contactBG'>
-            <form onSubmit={handleSubmit} id="contactForm" class="col-md-6 col-sm-12 col-xs-12  m-auto py-5" name="contact">
+        <div className='UpdateDateBG'>
+            <h4 className='text-center'>Update Important Dates </h4>
+            <form onSubmit={handleSubmit} id="contactForm" class="col-md-6 col-sm-12 col-xs-12  m-auto py-5 mb-5" name="contact">
 
                 <div class="mb-3">
                     <label for="PaperSubmissionDeadline" class="form-label">Paper Submission Deadline</label>
@@ -50,7 +60,8 @@ const UpdateConferenceDate = () => {
                 </div>
 
                 <div className="text-center">
-                    <button class="btn btn-outline-success text-light" type='submit'>Submit</button>
+                    {/* <button class="btn btn-outline-success text-light" type='submit'>Submit</button> */}
+                    <button class="button-57" type='submit'><span class="text">Submit</span><span>Update</span></button>
                 </div>
             </form>
         </div>
