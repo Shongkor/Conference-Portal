@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Carousel from '../../Component/Home/Carousel/Carousel';
 import HomeContent from '../../Component/Home/HomeContent/HomeContent';
 import SideBar from '../../Component/Shared/SideBar/SideBar';
+import ReviewList from '../../Component/TrackComponent/ReviewList/ReviewList';
 import { useLoaderData } from 'react-router-dom';
 
 const HomePage = () => {
@@ -27,6 +28,10 @@ const HomePage = () => {
                     <div className='col-md-3 border border-bottom-0 border-end-0 h-75 align-items-center p-0'>
                         <SideBar />
                     </div>
+                </div>
+
+                <div className='row'>
+                 <ReviewList/>
                 </div>
             </div>
         </div>
